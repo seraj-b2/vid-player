@@ -1,21 +1,34 @@
-<html>
-<video id="player" controls autoplay/>
-</video>
-<script>
-	/*******vn.karoshi.gl*******/
-	if(!(/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)))
-	{
-		alert("Please use Google Chrome.");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Video Player</title>
+</head>
+<body>
+    <h1>Local Video Player</h1>
 
-	}else{
-		const queryString = window.location.search;
+    <!-- Input to select a local video file -->
+    <input type="file" id="videoInput" accept="*">
 
-		const searchParams = new URLSearchParams(queryString);
-		
-		const vValue = searchParams.get("v");
-		
-		player.src = 'file:///' + vValue);
-	}
-	
-</script>
+    <!-- Video element to display the selected video -->
+    <video id="videoPlayer" controls></video>
+
+    <script>
+        // Function to handle the file selection and playback
+        document.getElementById("videoInput").addEventListener("change", function (event) {
+            const videoPlayer = document.getElementById("videoPlayer");
+            const selectedFile = event.target.files[0];
+
+            if (selectedFile) {
+                const videoURL = URL.createObjectURL(selectedFile);
+                videoPlayer.src = videoURL;
+                videoPlayer.load();
+                videoPlayer.play();
+            } else {
+                alert("Please select a valid video file.");
+            }
+        });
+    </script>
+</body>
 </html>
