@@ -7,8 +7,15 @@
 	{
 		alert("Please use Google Chrome.");
 
-	}else
-	player.src = 'file:///'+window.location.href.substr(window.location.href.indexOf('v')+2);
+	}else{
+		const queryString = window.location.search;
+
+		const searchParams = new URLSearchParams(queryString);
+		
+		const vValue = searchParams.get("v");
+		
+		player.src = 'file:///' + vValue);
+	}
 	
 </script>
 </html>
